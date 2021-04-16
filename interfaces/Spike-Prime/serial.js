@@ -1,5 +1,3 @@
-//Carter Silvey
-
 // Constants
 const SerialPort = require('serialport')
 const parsers = SerialPort.parsers
@@ -21,10 +19,17 @@ const parser = new parsers.Readline({
 	delimiter: '\r\n',
 })
 
+
+// For a mac the port may look like the following:
 // The port to connect to (CHANGE TO YOUR SERAIL PORT)
 const port = new SerialPort('/dev/tty.LEGOHub380B3CAA5E34-Ser', { 
 	baudRate: 115200,
 })
+// For windows, it may look like the following: 
+// The port to connect to (CHANGE TO YOUR SERAIL PORT)
+// const port = new SerialPort('COM4', {
+//   baudRate: 115200,
+// })
 
 port.pipe(parser)
 

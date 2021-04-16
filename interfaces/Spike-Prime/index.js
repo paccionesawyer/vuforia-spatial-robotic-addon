@@ -1,6 +1,3 @@
-//Carter Silvey
-//Spike Prime Vuforia
-
 // ************** CHANGE THIS ************** //
 
 var TOOL_NAME = "Spike1"; // This is what is made on the webserver for the image target
