@@ -183,6 +183,7 @@ function startHardwareInterface() {
         server.moveNode(objectName, TOOL_NAME, "color", 75, -175)
         server.moveNode(objectName, TOOL_NAME, "distance", 0, -175)
         server.moveNode(objectName, TOOL_NAME, "force", -75, -175)
+        server.addNode(objectName, TOOL_NAME, "serial", "node", {x: 150, y: -175, scale:0.175});
     }
 
     // // Adds the FFT nodes for the activity
@@ -195,6 +196,15 @@ function startHardwareInterface() {
 
     // Constantly sort the sensor data
     setInterval(() => { sortSensor(); }, 10);
+ 
+    //Serial Communication
+    server.addReadListener(objectName, TOOL_NAME, "serial", function(data){
+        // Take whatever value you get and send it the Spike Prime Repl
+        console.log(data.value);
+        msg = data.value.toString();
+        console.log(msg);
+        setTimeout(() => { serial.writePort("send_serial('"+ msg +"')\r\n") }, 0);
+    });
 
     // Listens for the stopMotors node
     server.addReadListener(objectName, TOOL_NAME, "stopMotors", function(data){
