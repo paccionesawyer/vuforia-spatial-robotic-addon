@@ -9,6 +9,17 @@ def read():
         exec("print(" + portName[forceSensor] + ".get_force_percentage()/100)")
     exec("utime.sleep_ms(2)")
     exec("print(hub.motion.accelerometer() + hub.motion.gyroscope())")
+    
+# Function for sending a message over serial communication
+def send_serial(msg):
+    msg = str(msg) + "\r\n"
+    serial_dev.write(msg)
+    utime.sleep_ms(50)
+
+# Testing the function and testing for a visual representation of if the code is running
+send_serial("Testing Function")
+utime.sleep(1)
+hub.display.show(hub.Image.HAPPY)
 
 # # Define an FFT function that samples accelerometer data
 # def fft(axis, length):
@@ -35,7 +46,7 @@ def read():
 #     del amp
 
 # Print out the list of ports, so that the index.js file can see their locations
-for i in range(10):
+for i in range(100):
     print(portType)
 
 #end
